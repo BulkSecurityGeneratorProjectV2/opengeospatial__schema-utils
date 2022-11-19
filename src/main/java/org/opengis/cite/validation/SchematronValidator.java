@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -309,7 +310,7 @@ public class SchematronValidator {
     private void writeResultsToTempFile(XdmDestination xdmResult) {
         File temp = null;
         try {
-            temp = File.createTempFile("SchematronValidator-dump-", ".xml");
+            temp = Files.createTempFile("SchematronValidator-dump-", ".xml").toFile();
             BufferedWriter out = new BufferedWriter(new FileWriter(temp));
             out.write(xdmResult.getXdmNode().toString());
             out.close();
